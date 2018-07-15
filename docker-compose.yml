@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+  base:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/server
+    environment:
+      - DOTENV_PATH=.env
+  development-server:
+      extends: base
+      command: yarn development
+      environment:
+        - NODE_ENV=development
+      ports:
+        - 3000:3000
+      environment:
+        - PORT=3000
