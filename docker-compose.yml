@@ -13,7 +13,40 @@ services:
       command: yarn development
       environment:
         - NODE_ENV=development
+        - DOTENV_PATH=.env.development
       ports:
         - 3000:3000
+      links:
+          - development-database
+  test-server:
+      extends: base
+      command: yarn test
       environment:
-        - PORT=3000
+        - NODE_ENV=test
+        - DOTENV_PATH=.env.test
+      links:
+          - test-database
+  development-database:
+    image: postgres:9.6.5-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres-development
+      - POSTGRES_USER=postgres-development
+      - POSTGRES_DB=postgres-development
+    ports:
+      - 35432:5432
+    volumes:
+      - pgdata-development:/var/lib/postgresql/data
+  test-database:
+    image: postgres:9.6.5-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres-test
+      - POSTGRES_USER=postgres-test
+      - POSTGRES_DB=postgres-test
+    ports:
+      - 25432:5432
+    volumes:
+      - pgdata-test:/var/lib/postgresql/data
+volumes:
+  pgdata-development:
+  pgdata-test:
+
