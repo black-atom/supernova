@@ -1,23 +1,43 @@
 import test from 'ava';
 import getConfig from '../../../src/config/getConfig';
 
-test('to be a function', (t) => {
-  t.is(typeof getConfig === 'function', true);
+const configMock = {
+  development: {
+    database: 'postgres-development',
+  },
+  test: {
+    database: 'postgres-test',
+  },
+  production: {
+    database: 'postgres-production',
+  },
+};
+
+test('call with argument', (t) => {
+  const config = getConfig(configMock)('production');
+
+  t.deepEqual(config, {
+    database: 'postgres-production',
+  }, 'should get the production config');
 });
 
+test.afterEach(() => {
+  process.env.NODE_ENV = 'test';
+});
 
-test('get the correct config according to env', (t) => {
-  const configObj = {
-    test: {
-      config: true,
-    },
-    development: {
-      config: false,
-    },
-  };
+test.serial('process.env.NODE_ENV set to development', (t) => {
+  process.env.NODE_ENV = 'developent';
+  const config = getConfig(configMock)('development');
+  t.deepEqual(config, {
+    database: 'postgres-development',
+  }, 'should get development config');
+});
 
-  const configForTest = getConfig(configObj)('test');
-  const configForDevelopment = getConfig(configObj)('development');
-  t.is(configForTest.config, true);
-  t.is(configForDevelopment.config, false);
+test.serial('process.env.NODE_ENV set to empty', (t) => {
+  process.env.NODE_ENV = '';
+  const config = getConfig(configMock)();
+
+  t.deepEqual(config, {
+    database: 'postgres-test',
+  }, 'should get test config');
 });
