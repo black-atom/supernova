@@ -10,48 +10,20 @@ services:
       - DOTENV_PATH=.env
   development-server:
       extends: base
-      command: yarn development
+      command: yarn start-live
       environment:
         - NODE_ENV=development
-        - DOTENV_PATH=.env.development
       ports:
         - 3000:3000
       links:
-          - development-database
-  test:
-      extends: base
-      command: yarn watch-test
-      environment:
-        - NODE_ENV=test
-        - DOTENV_PATH=.env.test
-      links:
-          - test-database
-          - test-server
-  test-server:
-      extends: base
-      command: yarn nodemon
-      environment:
-        - NODE_ENV=test
-        - DOTENV_PATH=.env.test
-      links:
-          - test-database
-  development-database:
+          - database
+  database:
     image: postgres:9.6.5-alpine
     env_file:
-     - ./.env.development
+     - ./.env
     ports:
-      - 35432:5432
+      - 5432:5432
     volumes:
-      - pgdata-development:/var/lib/postgresql/data
-  test-database:
-    image: postgres:9.6.5-alpine
-    env_file:
-     - ./.env.test
-    ports:
-      - 25432:5432
-    volumes:
-      - pgdata-test:/var/lib/postgresql/data
+      - supernova-database:/var/lib/postgresql/data
 volumes:
-  pgdata-development:
-  pgdata-test:
-
+  supernova-database:

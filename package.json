@@ -8,12 +8,10 @@
   "private": false,
   "scripts": {
     "start": "node src/bin/server.js",
-    "start-test": "nodemon src/bin/server.js",
-    "development": "nodemon src/bin/server.js",
+    "start-live": "nodemon src/bin/server.js",
     "test": "jest test",
     "e2e-test": "jest test/e2e setupFiles",
     "unit-test": "jest test/unit",
-    "watch-test": "jest test --watch",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov"
   },
   "dependencies": {

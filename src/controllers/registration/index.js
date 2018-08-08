@@ -1,5 +1,9 @@
-const { companyService } = require('../../services')
 const database = require('../../database')
+
+const {
+  company: Company,
+  user: User
+} = database.models
 
 const registration = async (req, res, next) => {
   const {
@@ -7,12 +11,15 @@ const registration = async (req, res, next) => {
     user,
   } = req.body
 
-  const transaction = await database.transaction()
   try {
-    const newCompany = await companyService.registration(company, user, { transaction })
-    res.json(newCompany)
+    const companyWithUser = { ...company, users: [user] }
+    const createdCompany = await Company
+      .create(companyWithUser, {
+        include: [User],
+      })
+
+    res.status(200).json(createdCompany)
   } catch (error) {
-    transaction.rollback()
     next(error)
   }
 }

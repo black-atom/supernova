@@ -2,7 +2,7 @@ const getRequest = require('../../helpers/getRequest')
 
 const request = getRequest()
 
-test('POST /registration with valid data', async () => {
+test.only('POST /registration with valid data', async () => {
   const registrationData = {
     company: {
       name: 'one@example.com',
