@@ -1,11 +1,10 @@
-import test from 'ava';
-import config from '../../../src/config';
+const config = require('../../../src/config')
 
-test('to be a object', (t) => {
-  t.is(typeof config === 'object', true);
-});
+test('to be a object', () => {
+  expect(typeof config === 'object').toBe(true)
+})
 
-test('to have getDatabaseConfig function', (t) => {
-  t.is('getDatabaseConfig' in config, true);
-  t.is(typeof config.getDatabaseConfig === 'function', true);
-});
+test('to have getDatabaseConfig function', () => {
+  expect('getDatabaseConfig' in config).toBe(true)
+  expect(typeof config.getDatabaseConfig === 'function').toBe(true)
+})

@@ -18,9 +18,18 @@ services:
         - 3000:3000
       links:
           - development-database
+  test:
+      extends: base
+      command: yarn watch-test
+      environment:
+        - NODE_ENV=test
+        - DOTENV_PATH=.env.test
+      links:
+          - test-database
+          - test-server
   test-server:
       extends: base
-      command: yarn test
+      command: yarn nodemon
       environment:
         - NODE_ENV=test
         - DOTENV_PATH=.env.test

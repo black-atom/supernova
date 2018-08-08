@@ -15,9 +15,13 @@ undo-test-migration:
 .PHONY: test-setup-database
 
 test: run-test-migrations
-	@docker-compose up test-server
+	@docker-compose up test
 .PHONY: test
+
+test-server:
+	@docker-compose up test-server
+.PHONY: test-server
 
 development:
 	@docker-compose up development-server
-.PHONY: test
+.PHONY: development

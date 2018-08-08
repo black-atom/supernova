@@ -1,8 +1,8 @@
-const Sequelize = require('sequelize');
-const { getDatabaseConfig } = require('../config');
-const models = require('./models');
+const Sequelize = require('sequelize')
+const { getDatabaseConfig } = require('../config')
+const models = require('./models')
 
-const dbConfig = getDatabaseConfig();
+const dbConfig = getDatabaseConfig()
 const defaultDBConfig = {
   pool: {
     max: 10,
@@ -14,13 +14,14 @@ const defaultDBConfig = {
     freezeTableName: true,
     paranoid: true,
     timestamps: true,
+    underscored: true,
   },
-};
+}
 
-const sequelize = new Sequelize(Object.assign({}, defaultDBConfig, dbConfig));
+const sequelize = new Sequelize(Object.assign({}, defaultDBConfig, dbConfig))
 
-const modelInstances = models.map(model => model(sequelize));
+const modelInstances = models.map(model => model(sequelize))
 modelInstances
-  .forEach(modelIntance => modelIntance.associate && modelIntance.associate(sequelize.models));
+  .forEach(modelIntance => modelIntance.associate && modelIntance.associate(sequelize.models))
 
-module.exports = sequelize;
+module.exports = sequelize

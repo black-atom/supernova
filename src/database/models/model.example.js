@@ -1,11 +1,11 @@
 const {
   STRING,
-} = require('sequelize');
+} = require('sequelize')
 
 module.exports = (sequelize) => {
   const Task = sequelize.define('Task', {
     title: STRING,
-  });
+  })
 
   Task.associate = (models) => {
     models.Task.belongsTo(models.User, {
@@ -13,8 +13,8 @@ module.exports = (sequelize) => {
       foreignKey: {
         allowNull: false,
       },
-    });
-  };
+    })
+  }
 
-  return Task;
-};
+  return Task
+}
