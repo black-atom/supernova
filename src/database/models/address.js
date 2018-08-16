@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(200),
       allowNull: false,
     },
-    number: {
+    street_number: {
       type: Sequelize.STRING(8),
       allowNull: false,
     },

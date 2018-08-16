@@ -7,7 +7,7 @@ const databaseConfigObj = {
     database: 'development',
     username: 'alexandre',
     password: '123456',
-    logging: false,
+    logging: console.log,
     dialect: 'postgres',
   },
   development: {
@@ -16,7 +16,7 @@ const databaseConfigObj = {
     database: 'development',
     username: process.env.DB_USERNAME,
     password: '123456',
-    logging: false,
+    logging: console.log,
     dialect: 'postgres',
   },
   test: {
@@ -25,7 +25,7 @@ const databaseConfigObj = {
     database: 'development',
     username: 'alexandre',
     password: '123456',
-    logging: false,
+    logging: console.log,
     dialect: 'postgres',
   },
 }

@@ -11,7 +11,21 @@ Model body to post
   "status": "pago",
   "type": "mensal",
   "active": true,
-  "products_contract": [
+  "contact": {
+    "phone": "+5511987654321",
+    "email": "obi_wan@kenobi.com",
+    "name": "Obi wan kenobi",
+  },
+  "address": {
+    "street": "Rua dos Bobos",
+    "complementary": null,
+    "street_number": "100",
+    "neighborhood": "Santa rita",
+    "city": "santo amaral",
+    "state": "sp",
+    "zipcode": "12345678",
+  },
+  "contract_product": [
     {
       "id": "247cb130-a174-11e8-83b6-fb60e6e407e4",
       "name": "Product test Name",
@@ -25,7 +39,7 @@ Model body to post
       "address": {
         "street": "Rua dos Bobos",
         "complementary": null,
-        "street_number": "0",
+        "street_number": "100",
         "neighborhood": "Santa rita",
         "city": "santo amaral",
         "state": "sp",
@@ -34,4 +48,9 @@ Model body to post
     }
   ]
 }
+```
+
+
+```json
+
 ```
