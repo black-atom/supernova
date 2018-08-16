@@ -2,7 +2,7 @@ const database = require('../../database')
 
 const {
   company: Company,
-  user: User
+  user: User,
 } = database.models
 
 const registration = async (req, res, next) => {
