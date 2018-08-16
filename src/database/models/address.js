@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(50),
       allowNull: true,
     },
+    complementary: {
+      type: Sequelize.STRING(150),
+      allowNull: false,
+    },
     city: {
       type: Sequelize.STRING(50),
       allowNull: false,

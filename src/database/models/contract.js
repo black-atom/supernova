@@ -8,6 +8,10 @@ module.exports = (sequelize) => {
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
     },
+    contract_code: {
+      type: Sequelize.STRING(200),
+      allowNull: false,
+    },
     social_name: {
       type: Sequelize.STRING(200),
       allowNull: false,
@@ -24,10 +28,26 @@ module.exports = (sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    ended_date: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    created_date: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
     subsequent_month: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    amount: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     type: {
       type: Sequelize.ENUM('mensal', 'anual', 'semestral', 'trimestral', 'bimestral'),

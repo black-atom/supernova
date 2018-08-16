@@ -4,6 +4,11 @@ Model body to post
 ```json
 {
   "social_name": "Black Atom Company SA",
+  "contract_code": "2400",
+  "amount": 15000,
+  "ended_date": null,
+  "created_date": "2013-07-05",
+  "description": "Cliente com 50% de desconto nas peças dos equipamentos, 2 treinamentos por mês, visitas e acesso remoto ilimitado",
   "document_id": "429003210000142",
   "document_type": "cnpj",
   "expiration_date": 15,
@@ -48,9 +53,4 @@ Model body to post
     }
   ]
 }
-```
-
-
-```json
-
 ```
