@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     })
 
     models.company.hasMany(models.user)
-
+    
     models.company.belongsTo(models.user, {
       as: 'primary_user',
       foreignKey: 'primary_user_id',
