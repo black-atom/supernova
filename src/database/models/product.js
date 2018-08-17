@@ -36,5 +36,8 @@ module.exports = (sequelize) => {
       defaultValue: true,
     },
   })
+  Product.associate = (models) => {
+    models.product.belongsTo(models.company)
+  }
   return Product
 }

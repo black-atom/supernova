@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
     },
     complementary: {
       type: Sequelize.STRING(150),
-      allowNull: false,
+      allowNull: true,
     },
     city: {
       type: Sequelize.STRING(50),

@@ -30,7 +30,8 @@ module.exports = (sequelize) => {
     },
     ended_date: {
       type: Sequelize.DATE,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: null,
     },
     created_date: {
       type: Sequelize.DATE,
@@ -65,6 +66,7 @@ module.exports = (sequelize) => {
   })
   Contract.associate = (models) => {
     models.contract.hasMany(models.contract_product)
+    models.contract.belongsTo(models.company)
     models.contract.belongsTo(models.address)
     models.contract.belongsTo(models.contact)
   }

@@ -34,6 +34,6 @@ const startServer = () => {
 module.exports = ensureDBIsConnected()
   .then(() => logger.info('databse is connected'))
   .then(() => logger.info('starting server'))
-  .then(() => database.sync({ force: true }))
+  .then(() => database.sync({ force: false }))
   .then(startServer)
   .catch(error => logger.error('An error occurred', error))

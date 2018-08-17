@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
   ContractProduct.associate = (models) => {
     models.contract_product.belongsTo(models.address)
     models.contract_product.belongsTo(models.contract)
-    // models.contract_product.belongsTo(models.product)
+    models.contract_product.belongsTo(models.product)
   }
   return ContractProduct
 }
