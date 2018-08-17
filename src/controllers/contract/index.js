@@ -4,7 +4,6 @@ const {
   address: Address,
   contact: Contact,
   contract: Contract,
-  customer: Customer,
   contract_product: ContractProduct,
 } = database.models
 
@@ -15,7 +14,7 @@ const registration = async (req, res, next) => {
 
   try {
     const createdContract = await Contract.create(contract, {
-      include: [Address, Contact, Customer, ContractProduct],
+      include: [Address, Contact, ContractProduct],
     })
     res.status(200).json(createdContract)
   } catch (error) {
