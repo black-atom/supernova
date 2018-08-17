@@ -41,12 +41,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: 'Brasil',
     },
-    description: {
-      type: Sequelize.STRING(250),
+    active: {
+      type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: '',
+      defaultValue: true,
     },
   })
-
   return Address
 }

@@ -20,6 +20,11 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(50),
       allowNull: true,
     },
+    active: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   })
   return Contact
 }

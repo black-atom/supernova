@@ -24,6 +24,15 @@ module.exports = (sequelize) => {
       type: Sequelize.ENUM('cpf', 'cnpj'),
       allowNull: false,
     },
+    active: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   })
+  Customer.associate = (models) => {
+    models.contract.belongsTo(models.company)
+    models.customer.belongsTo(models.address)
+  }
   return Customer
 }
