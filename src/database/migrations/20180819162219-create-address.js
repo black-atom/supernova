@@ -10,7 +10,7 @@ module.exports = {
       type: Sequelize.STRING(200),
       allowNull: false,
     },
-    street_number: {
+    streetNumber: {
       type: Sequelize.STRING(8),
       allowNull: false,
     },

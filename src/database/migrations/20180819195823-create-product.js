@@ -18,7 +18,7 @@ module.exports = {
       type: Sequelize.ENUM('software', 'equipamento', 'peças', 'serviços'),
       allowNull: false,
     },
-    unit_price: {
+    unitPrice: {
       type: Sequelize.INTEGER,
       allowNull: false,
       defaultValue: 0,

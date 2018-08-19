@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(200),
       allowNull: false,
     },
-    document_id: {
+    documentId: {
       type: Sequelize.STRING(20),
       allowNull: false,
     },
-    document_type: {
+    documentType: {
       type: Sequelize.ENUM('cpf', 'rg'),
       allowNull: false,
     },

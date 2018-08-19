@@ -1,45 +1,40 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('contract', {
-    id: {
-      type: Sequelize.UUID,
-      allowNull: false,
-      defaultValue: Sequelize.UUIDV1,
-      primaryKey: true,
-    },
     contract_number: {
       type: Sequelize.STRING(200),
       allowNull: false,
+      primaryKey: true,
     },
     name: {
       type: Sequelize.STRING(200),
       allowNull: false,
     },
-    social_name: {
+    socialName: {
       type: Sequelize.STRING(200),
       allowNull: false,
     },
-    document_id: {
+    documentId: {
       type: Sequelize.STRING(20),
       allowNull: false,
     },
-    document_type: {
+    documentType: {
       type: Sequelize.ENUM('cpf', 'cnpj'),
       allowNull: false,
     },
-    expiration_date: {
+    expirationDate: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    end_date: {
+    endDate: {
       type: Sequelize.DATE,
       allowNull: true,
       defaultValue: null,
     },
-    start_date: {
+    startDate: {
       type: Sequelize.DATE,
       allowNull: false,
     },
-    subsequent_month: {
+    subsequentMonth: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
@@ -56,7 +51,7 @@ module.exports = {
       type: Sequelize.ENUM('mensal', 'anual', 'semestral', 'trimestral', 'bimestral'),
       allowNull: false,
     },
-    payment_status: {
+    paymentStatus: {
       type: Sequelize.ENUM('pago', 'aguardando pagamento', 'em atraso', 'encerrado'),
       allowNull: false,
     },

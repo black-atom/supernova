@@ -20,20 +20,10 @@ module.exports = (sequelize) => {
       type: Sequelize.ENUM('software', 'equipamento', 'peças', 'serviços'),
       allowNull: false,
     },
-    tangible: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
-    },
-    unit_price: {
+    unitPrice: {
       type: Sequelize.INTEGER,
       allowNull: false,
       defaultValue: 0,
-    },
-    active: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
     },
   })
   Product.associate = (models) => {

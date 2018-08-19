@@ -14,7 +14,6 @@ const defaultDBConfig = {
     freezeTableName: true,
     paranoid: true,
     timestamps: true,
-    underscored: true,
   },
 }
 
