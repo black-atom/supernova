@@ -1,33 +1,33 @@
-require('dotenv').config({ path: process.env.DOTENV_PATH })
+require('../loadEnv')
 
 const databaseConfigObj = {
   production: {
-    host: '127.0.0.1',
-    port: 5432,
-    database: 'development',
-    username: 'alexandre',
-    password: '123456',
-    logging: console.log,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    logging: false,
     dialect: 'postgres',
   },
   development: {
-    host: '127.0.0.1',
-    port: 5432,
-    database: 'development',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
     username: process.env.DB_USERNAME,
-    password: '123456',
-    logging: console.log,
+    password: process.env.DB_PASSWORD,
+    logging: false,
     dialect: 'postgres',
   },
   test: {
-    host: '127.0.0.1',
-    port: 5432,
-    database: 'development',
-    username: 'alexandre',
-    password: '123456',
-    logging: console.log,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    logging: false,
     dialect: 'postgres',
   },
 }
-
+console.log(databaseConfigObj)
 module.exports = databaseConfigObj

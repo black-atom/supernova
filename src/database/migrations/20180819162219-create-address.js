@@ -16,9 +16,9 @@ module.exports = {
     },
     neighborhood: {
       type: Sequelize.STRING(50),
-      allowNull: true,
+      allowNull: false,
     },
-    complementary: {
+    complement: {
       type: Sequelize.STRING(150),
       allowNull: true,
     },
@@ -38,11 +38,6 @@ module.exports = {
       type: Sequelize.STRING(15),
       allowNull: false,
       defaultValue: 'Brasil',
-    },
-    active: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
     },
   }),
   down: queryInterface => queryInterface.dropTable('address'),

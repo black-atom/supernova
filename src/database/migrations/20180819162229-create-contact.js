@@ -18,11 +18,6 @@ module.exports = {
       type: Sequelize.STRING(50),
       allowNull: true,
     },
-    active: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
-    },
   }),
   down: queryInterface => queryInterface.dropTable('contact'),
 }
