@@ -1,7 +1,5 @@
-const Sequelize = require('sequelize')
-
-module.exports = (sequelize) => {
-  const Contract = sequelize.define('contract', {
+module.exports = {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('contract', {
     id: {
       type: Sequelize.UUID,
       allowNull: false,
@@ -67,13 +65,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
-  })
-  Contract.associate = (models) => {
-    models.contract.hasMany(models.contract_product)
-    models.contract.belongsTo(models.address)
-    models.contract.belongsTo(models.company)
-    models.contract.belongsTo(models.contact)
-    models.contract.belongsTo(models.customer)
-  }
-  return Contract
+  }),
+  down: queryInterface => queryInterface.dropTable('contract'),
 }

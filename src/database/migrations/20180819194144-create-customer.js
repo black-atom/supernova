@@ -1,7 +1,5 @@
-const Sequelize = require('sequelize')
-
-module.exports = (sequelize) => {
-  const Customer = sequelize.define('customer', {
+module.exports = {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('customer', {
     id: {
       type: Sequelize.UUID,
       allowNull: false,
@@ -24,10 +22,6 @@ module.exports = (sequelize) => {
       type: Sequelize.ENUM('cpf', 'cnpj'),
       allowNull: false,
     },
-  })
-  Customer.associate = (models) => {
-    models.contract.belongsTo(models.company)
-    models.customer.belongsTo(models.address)
-  }
-  return Customer
+  }),
+  down: queryInterface => queryInterface.dropTable('customer'),
 }
