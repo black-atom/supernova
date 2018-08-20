@@ -27,6 +27,16 @@ module.exports = {
       allowNull: false,
       defaultValue: false,
     },
+    companyId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'company',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'NO ACTION',
+    },
   }),
   down: queryInterface => queryInterface.dropTable('user'),
 }

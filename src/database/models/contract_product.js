@@ -20,10 +20,10 @@ module.exports = (sequelize) => {
       type: Sequelize.ENUM('software', 'equipamento', 'peças', 'serviços'),
       allowNull: false,
     },
-    unitPrice: {
+    quantity: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      defaultValue: 0,
+      defaultValue: 1,
     },
     active: {
       type: Sequelize.BOOLEAN,
@@ -43,7 +43,6 @@ module.exports = (sequelize) => {
     models.contract_product.belongsTo(models.address)
     models.contract_product.belongsTo(models.contract)
     models.contract_product.belongsTo(models.customer)
-    models.contract_product.belongsTo(models.product)
   }
   return ContractProduct
 }

@@ -29,5 +29,5 @@ const databaseConfigObj = {
     dialect: 'postgres',
   },
 }
-console.log(databaseConfigObj)
+
 module.exports = databaseConfigObj

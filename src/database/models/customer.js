@@ -25,9 +25,14 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   })
+
   Customer.associate = (models) => {
-    models.contract.belongsTo(models.company)
-    models.customer.belongsTo(models.address)
+    models.customer.belongsToMany(models.customer, {
+      through: 'customer_address',
+    })
+    models.customer.belongsToMany(models.customer, {
+      through: 'customer_contact',
+    })
   }
   return Customer
 }

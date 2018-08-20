@@ -37,10 +37,16 @@ module.exports = (sequelize) => {
     models.company.hasMany(models.product)
     models.company.hasMany(models.contract)
     models.company.hasMany(models.customer)
+
     models.company.belongsTo(models.user, {
-      as: 'primary_user',
-      foreignKey: 'primary_user_id',
-      constraints: false,
+      as: 'primaryUser',
+    })
+
+    models.company.belongsToMany(models.customer, {
+      through: 'company_address',
+    })
+    models.company.belongsToMany(models.customer, {
+      through: 'company_contact',
     })
   }
 

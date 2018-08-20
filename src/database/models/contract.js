@@ -2,14 +2,10 @@ const Sequelize = require('sequelize')
 
 module.exports = (sequelize) => {
   const Contract = sequelize.define('contract', {
-    contract_number: {
-      type: Sequelize.STRING(200),
-      allowNull: false,
-      primaryKey: true,
-    },
-    companyId: {
+    id: {
       type: Sequelize.UUID,
       allowNull: false,
+      defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
     },
     name: {
@@ -67,21 +63,70 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
+    contract_number: {
+      type: Sequelize.STRING(200),
+      allowNull: false,
+      unique: 'contract_number_company',
+    },
+    companyId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'company',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'NO ACTION',
+      unique: 'contract_number_company',
+    },
+    addressId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'address',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'NO ACTION',
+    },
+    contactId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'contact',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'NO ACTION',
+    },
+    customerId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'customer',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'NO ACTION',
+    },
   })
+
   Contract.associate = (models) => {
-    models.contract.hasMany(models.contract_product)
     models.contract.belongsTo(models.address)
     models.contract.belongsTo(models.company)
-    models.contract.belongsTo(models.contact)
-    models.contract.belongsTo(models.customer)
-    models.contract.hasMany(models.contract, {
-      as: 'subContract',
+    models.contract.belongsTo(models.contract, {
+      as: 'primaryContract',
       foreignKey: {
         allowNull: true,
       },
     })
-    models.contract.belongsTo(models.contract, {
-      as: 'primaryContract',
+    models.contract.belongsTo(models.contact)
+    models.contract.belongsTo(models.customer)
+
+    models.contract.hasMany(models.contract_product)
+    models.contract.hasMany(models.contract, {
+      as: 'subContract',
       foreignKey: {
         allowNull: true,
       },

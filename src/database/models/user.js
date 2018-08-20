@@ -29,6 +29,17 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false,
     },
+    companyId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      unique: 'sku_company',
+      references: {
+        model: 'company',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'NO ACTION',
+    },
   })
 
   User.associate = (models) => {
