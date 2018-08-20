@@ -13,6 +13,7 @@ module.exports = {
     documentId: {
       type: Sequelize.STRING(20),
       allowNull: false,
+      unique: true,
     },
     documentType: {
       type: Sequelize.ENUM('cpf', 'cnpj'),

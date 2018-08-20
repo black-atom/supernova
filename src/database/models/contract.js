@@ -7,6 +7,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
+    companyId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      primaryKey: true,
+    },
     name: {
       type: Sequelize.STRING(200),
       allowNull: false,
@@ -69,8 +74,17 @@ module.exports = (sequelize) => {
     models.contract.belongsTo(models.company)
     models.contract.belongsTo(models.contact)
     models.contract.belongsTo(models.customer)
+    models.contract.hasMany(models.contract, {
+      as: 'subContract',
+      foreignKey: {
+        allowNull: true,
+      },
+    })
     models.contract.belongsTo(models.contract, {
-
+      as: 'primaryContract',
+      foreignKey: {
+        allowNull: true,
+      },
     })
   }
   return Contract
