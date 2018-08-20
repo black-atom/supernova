@@ -27,10 +27,10 @@ module.exports = (sequelize) => {
   })
 
   Customer.associate = (models) => {
-    models.customer.belongsToMany(models.customer, {
+    models.customer.belongsToMany(models.address, {
       through: 'customer_address',
     })
-    models.customer.belongsToMany(models.customer, {
+    models.customer.belongsToMany(models.contact, {
       through: 'customer_contact',
     })
   }

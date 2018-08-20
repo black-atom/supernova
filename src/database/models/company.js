@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
 
     models.company.belongsTo(models.user, {
       as: 'primaryUser',
+      constraints: false,
     })
 
     models.company.belongsToMany(models.customer, {

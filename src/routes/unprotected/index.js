@@ -1,14 +1,7 @@
 const route = require('express').Router()
-const {
-  contract,
-  customer,
-  product,
-  registration,
-} = require('../../controllers')
+const registration = require('./registration')
 
-route.post('/registration', registration)
-route.post('/contract', contract)
-route.post('/customer', customer)
-route.post('/product', product)
+route.use(registration)
+
 
 module.exports = route

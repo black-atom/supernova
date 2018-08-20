@@ -39,6 +39,18 @@ module.exports = {
       allowNull: false,
       defaultValue: 'Brasil',
     },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    deletedAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
   }),
   down: queryInterface => queryInterface.dropTable('address'),
 }

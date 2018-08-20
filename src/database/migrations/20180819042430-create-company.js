@@ -28,6 +28,18 @@ module.exports = {
       allowNull: false,
       defaultValue: false,
     },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    deletedAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
   }),
   down: queryInterface => queryInterface.dropTable('company'),
 }

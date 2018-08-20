@@ -108,6 +108,18 @@ module.exports = {
       onUpdate: 'CASCADE',
       onDelete: 'NO ACTION',
     },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    deletedAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
   }),
   down: queryInterface => queryInterface.dropTable('contract'),
 }
