@@ -20,7 +20,7 @@ const registration = async (req, res, next) => {
         include: [User],
         trasanction,
       })
-  
+
     const [createdUser] = createdCompany.users
     createdCompany.primaryUserId = createdUser.id
 
