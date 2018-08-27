@@ -26,6 +26,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: 0,
     },
+    tangible: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
     companyId: {
       type: Sequelize.UUID,
       allowNull: false,

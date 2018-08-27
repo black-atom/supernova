@@ -30,6 +30,16 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
+    unitPrice: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    tangible: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
     warrantyDay: {
       type: Sequelize.INTEGER,
       allowNull: false,

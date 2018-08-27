@@ -3,6 +3,7 @@
 Model body to post
 ```json
 {
+  "active": false, // default this value is false
   "name": "company name",
   "documentType": "cnpj",
   "documentId": "55693882000100",

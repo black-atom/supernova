@@ -3,12 +3,11 @@
 Model body to post
 ```json
 {
-  "active": true,
   "name": "I'm a new customer",
-  "social_name": "I'm a new social name",
-  "company_id": "230467d0-a21e-11e8-884a-a37ef8c5cff2",
-  "document_type": "cnpj",
-  "document_id": "429003210000142",
+  "socialName": "I'm a new social name",
+  "companyId": "230467d0-a21e-11e8-884a-a37ef8c5cff2",
+  "documentType": "cnpj",
+  "documentId": "429003210000142",
   "contact": {
   	"name": "obi wan kenobi",
   	"phone": "+5511987654321",
@@ -17,7 +16,7 @@ Model body to post
   "address": {
     "street": "Rua dos Bobos",
     "complementary": null,
-    "street_number": "10",
+    "streetNumber": "10",
     "neighborhood": "Santa rita",
     "city": "santo amaral",
     "state": "sp",

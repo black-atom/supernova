@@ -63,7 +63,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
-    contract_number: {
+    contractNumber: {
       type: Sequelize.STRING(200),
       allowNull: false,
       unique: 'contract_number_company',
