@@ -1,5 +1,5 @@
-const getLogger = require('./logger');
+const getLogger = require('./logger')
 
 module.exports = {
   getLogger,
-};
+}
