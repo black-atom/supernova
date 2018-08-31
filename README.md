@@ -47,4 +47,8 @@ $ make test
 ```
 This will run both e2e and unit tests
 
+## Create Migrations
+node_modules/.bin/sequelize migration:generate --name migration_name
+
+
 

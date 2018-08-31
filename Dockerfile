@@ -10,4 +10,4 @@ RUN if [ "x$NODE_ENV" == "xproduction" ]; then yarn install --production ; else 
 
 COPY src /server/src
 
-EXPOSE 3000
+EXPOSE 4000

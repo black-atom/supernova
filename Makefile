@@ -1,23 +1,39 @@
-test-database:
-	@docker-compose up -d test-database
+database:
+	@docker-compose up -d database
 .PHONY: test-database
 
-test-setup-database:
-	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:create --debug true --config src/config/database/configObject.js --env test" test-server
+setup-test-database: database
+	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:create --env test" server-test
 .PHONY: test-setup-database
 
-run-test-migrations:
-	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate --debug true --config src/config/database/configObject.js --env test --migrations-path src/database/migrations" test-server
+run-test-migration: database
+	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate --debug true --env test" server-test
 .PHONY: test-setup-database
 
-undo-test-migration:
-	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate:undo --debug true --config src/config/database/configObject.js --env test --migrations-path src/database/migrations" test-server
+run-seeds: database
+	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:seed:all --debug true --env test" server-test
+.PHONY: run-seeds
+
+undo-seeds: database
+	@docker-compose run --rm --entrypoint="nnode_modules/.bin/sequelize db:seed:undo:all --debug true --env test" server-test
+.PHONY: undo-seeds
+
+undo-test-migration: database
+	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate:undo --debug true --env test" server-test
 .PHONY: test-setup-database
 
-test: run-test-migrations
-	@docker-compose up test-server
+undo-all-test-migration: database
+	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate:undo:all --debug true --env test" server-test
+.PHONY: test-setup-database
+
+server-test:
+	@docker-compose up server-test
+.PHONY: test-server
+
+test: database
+	@docker-compose run --rm --entrypoint="yarn test" server-test
 .PHONY: test
 
-development:
-	@docker-compose up development-server
+test: database
+	@docker-compose run --rm --entrypoint="yarn test" server-test
 .PHONY: test
