@@ -1,5 +1,5 @@
-const registration = require('./registration')
+const company = require('./company')
 
 module.exports = {
-  registration,
+  company,
 }
