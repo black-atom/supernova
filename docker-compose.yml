@@ -13,7 +13,10 @@ services:
       command: yarn start-live
       environment:
         - NODE_ENV=test
+      expose: 
+        - 9229
       ports:
+        - 9229:9229
         - 4000:4000
       links:
           - database

@@ -26,14 +26,10 @@ undo-all-test-migration: database
 	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate:undo:all --debug true --env test" server-test
 .PHONY: test-setup-database
 
-server-test:
+server-test: database
 	@docker-compose up server-test
 .PHONY: test-server
 
-test: database
-	@docker-compose run --rm --entrypoint="yarn test" server-test
-.PHONY: test
-
-test: database
+test:
 	@docker-compose run --rm --entrypoint="yarn test" server-test
 .PHONY: test
