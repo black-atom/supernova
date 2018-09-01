@@ -5,36 +5,21 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/project
     docker:
-      # specify the version you desire here
-      - image: circleci/node:8.11
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+    # Primary container image where all steps run.
+     - image: circleci/node:10.9-stretch-browsers
     steps:
+      # command will execute in trusty container
+      # and can access mongo on localhost
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+      - setup_remote_docker
+#  - run cd ~/project
+      - run: ls -lah
       - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
-      - run: yarn test-nyc
-      - run: yarn coverage
-
-
+      - run: docker-compose up --build -d database
+      - run: docker-compose up --build server-test
+# - run: make setup-test-database
+# - run: make run-test-migration
+# - run: make run-seeds
+# - run: make test

@@ -6,7 +6,8 @@ COPY yarn.lock /server
 WORKDIR /server
 
 RUN apk --update add --no-cache python make g++
-RUN if [ "x$NODE_ENV" == "xproduction" ]; then yarn install --production ; else yarn install ; fi
+#RUN if [ "x$NODE_ENV" == "xproduction" ]; then yarn install --production ; else yarn install ; fi
+RUN yarn install
 
 COPY src /server/src
 

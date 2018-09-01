@@ -4,11 +4,11 @@ database:
 
 setup-test-database: database
 	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:create --env test" server-test
-.PHONY: test-setup-database
+.PHONY: setup-test-database
 
 run-test-migration: database
 	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:migrate --debug true --env test" server-test
-.PHONY: test-setup-database
+.PHONY: run-test-migration
 
 run-seeds: database
 	@docker-compose run --rm --entrypoint="node_modules/.bin/sequelize db:seed:all --debug true --env test" server-test
