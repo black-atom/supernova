@@ -8,14 +8,16 @@
   "private": false,
   "scripts": {
     "start": "node src/bin/server.js",
-    "start-live": "nodemon src/bin/server.js",
-    "test": "ava 'test/**/*.js'",
+    "start-live": "nodemon --inspect=0.0.0.0:9229 src/bin/server.js",
+    "test": "ava  --verbose 'test/**/*.js'",
     "e2e-test": "ava 'test/e23/**/*.js'",
     "unit-test": "ava 'test/unit/**/*.js'",
     "test-nyc": "nyc ava 'test/**/*.js'",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov"
   },
   "dependencies": {
+    "@fnando/cnpj": "^0.1.0",
+    "@fnando/cpf": "^0.1.0",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "1.18.3",
