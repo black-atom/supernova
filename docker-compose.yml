@@ -4,45 +4,34 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    volumes:
-      - .:/server
     environment:
       - DOTENV_PATH=.env
-  development-server:
+  server:
       extends: base
-      command: yarn development
-      environment:
-        - NODE_ENV=development
-        - DOTENV_PATH=.env.development
-      ports:
-        - 3000:3000
-      links:
-          - development-database
-  test-server:
-      extends: base
-      command: yarn test
+      command: yarn start
       environment:
         - NODE_ENV=test
-        - DOTENV_PATH=.env.test
+      ports:
+        - 4000:4000
       links:
-          - test-database
-  development-database:
+          - database
+  live-server:
+      extends: base
+      command: yarn start-live
+      environment:
+        - NODE_ENV=test
+      ports:
+        - 9229:9229
+        - 4000:4000
+      links:
+          - database
+      volumes:
+        - ./src:/server/src
+  database:
     image: postgres:9.6.5-alpine
-    env_file:
-     - ./.env.development
     ports:
-      - 35432:5432
+      - 5432:5432
     volumes:
-      - pgdata-development:/var/lib/postgresql/data
-  test-database:
-    image: postgres:9.6.5-alpine
-    env_file:
-     - ./.env.test
-    ports:
-      - 25432:5432
-    volumes:
-      - pgdata-test:/var/lib/postgresql/data
+      - supernova-database:/var/lib/postgresql/data
 volumes:
-  pgdata-development:
-  pgdata-test:
-
+  supernova-database:

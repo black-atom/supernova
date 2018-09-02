@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.DOTENV_PATH });
+require('../loadEnv')
 
 const databaseConfigObj = {
   production: {
@@ -28,6 +28,6 @@ const databaseConfigObj = {
     logging: false,
     dialect: 'postgres',
   },
-};
+}
 
-module.exports = databaseConfigObj;
+module.exports = databaseConfigObj

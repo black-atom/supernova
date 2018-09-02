@@ -1,5 +1,5 @@
-const getDatabaseConfig = require('./database');
+const getDatabaseConfig = require('./database')
 
 module.exports = {
   getDatabaseConfig,
-};
+}
