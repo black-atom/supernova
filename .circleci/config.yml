@@ -1,25 +1,25 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     working_directory: ~/project
     docker:
-    # Primary container image where all steps run.
      - image: circleci/node:10.9-stretch-browsers
     steps:
-      # command will execute in trusty container
-      # and can access mongo on localhost
       - checkout
-      - setup_remote_docker
-#  - run cd ~/project
-      - run: ls -lah
-      - run: yarn install
-      - run: docker-compose up --build -d database
-      - run: docker-compose up --build server-test
-# - run: make setup-test-database
-# - run: make run-test-migration
-# - run: make run-seeds
-# - run: make test
+      - setup_remote_docker: 
+         docker_layer_caching: true
+      - run:
+          name: Build and start database
+          command: docker-compose up -d --build database
+      - run:
+          name: Build server
+          command: docker-compose build server
+      - run:
+          name: Run migrations
+          command: make run-test-migration
+      - run:
+          name: Run seeds
+          command: make run-seeds
+      - run:
+          name: Run tests
+          command: make test
