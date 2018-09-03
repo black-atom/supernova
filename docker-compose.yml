@@ -8,25 +8,16 @@ services:
       - DOTENV_PATH=.env
   server:
       extends: base
-      command: yarn start
-      environment:
-        - NODE_ENV=test
-      ports:
-        - 4000:4000
-      links:
-          - database
-  live-server:
-      extends: base
       command: yarn start-live
       environment:
         - NODE_ENV=test
       ports:
-        - 9229:9229
         - 4000:4000
+        - 9229:9229
       links:
           - database
       volumes:
-        - ./src:/server/src
+        - .:/server
   database:
     image: postgres:9.6.5-alpine
     ports:
