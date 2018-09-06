@@ -33,10 +33,18 @@ $ git clone git@github.com:black-atom/supernova.git
 
 There are 3 default .env files. You can change them according to your needs..
 
-## Running Development Server
+## Setup
+To setup the environment you can change or create a .env file. Then run:
+```
+make database
+make run-test-migration
+make run-seeds
+```
+
+## Running Server
 To run locally, simply do the following command:
 ```sh
-$ make development
+make server
 ```
 This will start the development server listening on port 3000.
 
