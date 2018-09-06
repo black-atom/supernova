@@ -10,6 +10,7 @@ const defaultDBConfig = {
     acquire: 30000,
     idle: 10000,
   },
+  operatorsAliases: Sequelize.Op,
   define: {
     freezeTableName: true,
     paranoid: true,

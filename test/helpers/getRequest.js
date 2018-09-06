@@ -10,6 +10,12 @@ const {
   prop,
   toLower,
 } = require('ramda')
+require('../../src/config/loadEnv')
+
+const {
+  SERVER_ENDPOINT,
+  NODE_PORT,
+} = process.env
 
 const defaultToEmptyObject = defaultTo({})
 const pickValuesFromResponse = pick([
@@ -25,7 +31,7 @@ const transformResponseProps = applySpec({
 
 const getRequest = (config = {}) => {
   const defaultConfig = {
-    baseURL: 'http://server:4000',
+    baseURL: `http://${SERVER_ENDPOINT}:${NODE_PORT}`,
     headers: defaultToEmptyObject(),
     params: defaultToEmptyObject(),
     timeout: 3000,
@@ -34,7 +40,7 @@ const getRequest = (config = {}) => {
   const axiosConfig = { ...defaultConfig, ...config }
   const axiosIntance = axios.create(axiosConfig)
 
-  return (url, method = 'get', data = {}, params = {}, headers = {}) => Promise
+  const makeRequest = (url, method = 'get', data = {}, params = {}, headers = {}) => Promise
     .resolve({
       url,
       method: toLower(method),
@@ -46,6 +52,31 @@ const getRequest = (config = {}) => {
     .then(pickValuesFromResponse)
     .catch(prop('response'))
     .then(transformResponseProps)
+
+  const requestWithoutBody = (
+    url,
+    {
+      headers = {},
+      params = {},
+    } = {},
+  ) => makeRequest(url, 'get', null, params, headers)
+
+  const requestWithBody = methodName => (
+    url,
+    body = {},
+    {
+      headers = {},
+      params = {},
+    } = {},
+  ) => makeRequest(url, methodName, body, params, headers)
+
+  return {
+    get: requestWithoutBody,
+    post: requestWithBody('post'),
+    put: requestWithBody('put'),
+    delete: requestWithBody('delete'),
+    patch: requestWithBody('patch'),
+  }
 }
 
 module.exports = getRequest

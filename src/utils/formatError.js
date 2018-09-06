@@ -1,5 +1,6 @@
 const R = require('ramda')
 const { UniqueConstraintError } = require('sequelize')
+const { Base } = require('../infra/errors')
 
 
 const UniqueConstraintErrorFormatter = R.applySpec({
@@ -24,11 +25,18 @@ const getError = (
 ) => R.applySpec({
   status: R.propOr(status, 'status'),
   name: () => name,
-  erros: R.pipe(
+  errors: R.pipe(
     R.propOr([], 'errors'),
     R.map(formatter),
   ),
 })
+
+const baseErrorFormatter = R.applySpec({
+  field: R.propOr([], 'field'),
+  message: R.propOr('required', 'message'),
+  type: R.propOr('required'),
+})
+
 
 const formatErrorResponse = (err) => {
   if (err instanceof UniqueConstraintError) {
@@ -37,6 +45,10 @@ const formatErrorResponse = (err) => {
 
   if (err.message === 'validation error') {
     return getError(422, 'validation_error', validationErrorFormatter)(err)
+  }
+
+  if (err instanceof Base) {
+    return getError(err.statusCode, err.message, baseErrorFormatter)(err)
   }
 
   return getError()(err)
