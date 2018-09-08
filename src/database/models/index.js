@@ -3,6 +3,7 @@ const Contact = require('./contact')
 const Company = require('./company')
 const User = require('./user')
 const Role = require('./role')
+const Session = require('./session')
 
 module.exports = [
   Address,
@@ -10,4 +11,5 @@ module.exports = [
   Company,
   User,
   Role,
+  Session,
 ]

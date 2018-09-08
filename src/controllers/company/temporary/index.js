@@ -10,10 +10,11 @@ const {
 const createTemporaryCompany = async (req, res, next) => {
   const transaction = await database.transaction()
   try {
+    const rawPassword = generateText(30)
     const primaryUser = {
       name: 'primary_user',
       email: `${generateText(20)}@blackatom.com`,
-      password: `${generateText(30)}`,
+      password: rawPassword,
       documentType: 'cpf',
       documentId: documents.generateCPF(),
     }
@@ -55,7 +56,10 @@ const createTemporaryCompany = async (req, res, next) => {
     })
 
     await transaction.commit()
-    res.status(200).json(createdCompany)
+    const rawCompany = createdCompany.get({ plain: true })
+    rawCompany.primaryUser.password = rawPassword
+
+    res.status(200).json(rawCompany)
   } catch (error) {
     transaction.rollback()
     next(error)

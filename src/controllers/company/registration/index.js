@@ -1,6 +1,4 @@
-const joi = require('joi')
 const database = require('../../../database')
-const validationSchema = require('../../../validations/company/registration')
 
 const {
   company: Company,
@@ -14,7 +12,6 @@ const registration = async (req, res, next) => {
   const transaction = await database.transaction()
   try {
     const company = requestBody
-    debugger
     const primaryUser = requestBody.user
 
     const adminRole = await Role.findOne({

@@ -4,22 +4,48 @@ jobs:
     working_directory: ~/project
     docker:
      - image: circleci/node:10.9-stretch-browsers
+     - image: postgres:9.6.5-alpine
+       environment:
+         POSTGRES_USER: postgres
+         POSTGRES_PASSWORD: postgres
+    environment:
+      DB_DATABASE: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
+      DB_PORT: 5432
+      NODE_ENV: test
+      SERVER_ENDPOINT: localhost
+      NODE_PORT: 4000
     steps:
       - checkout
-      - setup_remote_docker: 
-         docker_layer_caching: true
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          name: Restone Dependencies Cache
       - run:
-          name: Build and start database
-          command: docker-compose up -d --build database
+          name: Intall Dependencies
+          command: yarn install
+      - save_cache:
+          name: Save Dependencies In Cache
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
       - run:
-          name: Build server
-          command: docker-compose build server
+          name: Run Server
+          command: node src/bin/server.js
+          background: true
       - run:
-          name: Run migrations
-          command: make run-test-migration
+          name: Run Migrations
+          command: node_modules/.bin/sequelize db:migrate --debug true --env test
       - run:
-          name: Run seeds
-          command: make run-seeds
+          name: Run Seeds
+          command: node_modules/.bin/sequelize db:seed:all --debug true --env test
       - run:
-          name: Run tests
-          command: make test
+          name: Run Unit Tests
+          command: yarn unit-test
+      - run:
+          name: Run e2e Tests
+          command: yarn e2e-test
+      - run:
+          name: Run Lint
+          command: yarn lint

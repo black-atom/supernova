@@ -36,7 +36,9 @@ module.exports = (sequelize) => {
     },
   })
 
-  User.prototype.comparePassword = password => bcrypt.compareSync(password, this.password)
+  User.prototype.comparePassword = function comparePassword(password) {
+    return bcrypt.compareSync(password, this.password)
+  }
 
   User.associate = (models) => {
     models.user.belongsTo(models.company)

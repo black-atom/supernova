@@ -10,10 +10,11 @@
     "start": "node src/bin/server.js",
     "start-live": "nodemon --inspect=0.0.0.0:9229 src/bin/server.js",
     "test": "ava  --verbose 'test/**/*.js'",
-    "e2e-test": "ava 'test/e23/**/*.js'",
+    "e2e-test": "ava 'test/e2e/**/*.js'",
     "unit-test": "ava 'test/unit/**/*.js'",
     "test-nyc": "nyc ava 'test/**/*.js'",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov"
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
+    "lint": "eslint './{test,src}/**/*.js'"
   },
   "dependencies": {
     "@fnando/cnpj": "^0.1.0",
@@ -37,9 +38,11 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "axios": "^0.18.0",
+    "babel-eslint": "^9.0.0",
     "codecov": "^3.0.4",
     "eslint": "4.19.1",
     "eslint-config-airbnb-base": "13.0.0",
+    "eslint-plugin-ava": "^5.1.0",
     "eslint-plugin-import": "2.12.0",
     "eslint-plugin-jest": "^21.18.0",
     "nodemon": "^1.18.2",

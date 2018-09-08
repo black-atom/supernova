@@ -1,7 +1,7 @@
 import test from 'ava'
-import getRequest from '../../helpers/getRequest'
-import { generateText, documents } from '../../helpers/utils'
+import { utils, getRequest } from '../../helpers'
 
+const { generateText, documents } = utils
 const request = getRequest()
 
 test('POST /registration with valid data', async (t) => {
@@ -18,7 +18,7 @@ test('POST /registration with valid data', async (t) => {
     },
   }
 
-  const response = await request('/registration', 'post', companyData)
+  const response = await request.post('/registration', companyData)
 
   t.is(response.statusCode, 200)
   t.truthy(response.body)
@@ -53,8 +53,8 @@ test('POST /registration should failed with same data', async (t) => {
     },
   }
 
-  await request('/registration', 'post', companyData)
-  const response = await request('/registration', 'post', companyData)
+  await request.post('/registration', companyData)
+  const response = await request.post('/registration', companyData)
 
   t.is(response.statusCode, 409)
   t.is(response.body.status, 409)
