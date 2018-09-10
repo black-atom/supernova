@@ -6,7 +6,7 @@ const dbConfig = getDatabaseConfig()
 const defaultDBConfig = {
   pool: {
     max: 10,
-    min: 0,
+    min: 5,
     acquire: 30000,
     idle: 10000,
   },
