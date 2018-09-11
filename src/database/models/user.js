@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt')
 
 module.exports = (sequelize) => {
   const User = sequelize.define('user', {
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(100),
       allowNull: false,
       set(password) {
-        const hash = bcrypt.hashSync(password)
+        const hash = bcrypt.hashSync(password, 10)
         this.setDataValue('password', hash)
       },
     },
