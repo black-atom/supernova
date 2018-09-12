@@ -29,10 +29,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-    ], {})
+    ],
+    {})
   },
+  down: (queryInterface, Sequelize) => {
+    const { Op } = Sequelize
 
-  down: (queryInterface) => {
-    queryInterface.bulkDelete('Person', null, {})
+    queryInterface.bulkDelete('role', {
+      id: {
+        [Op.in]: [1, 2, 3, 4],
+      },
+    })
   },
 }

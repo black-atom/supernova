@@ -38,7 +38,6 @@ To setup the environment you can change or create a .env file. Then run:
 ```
 make database
 make run-test-migration
-make run-seeds
 ```
 
 ## Running Server
