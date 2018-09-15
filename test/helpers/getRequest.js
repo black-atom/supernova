@@ -34,7 +34,7 @@ const getRequest = (config = {}) => {
     baseURL: `http://${SERVER_ENDPOINT}:${NODE_PORT}`,
     headers: defaultToEmptyObject(),
     params: defaultToEmptyObject(),
-    timeout: 3000,
+    timeout: 10000,
   }
 
   const axiosConfig = { ...defaultConfig, ...config }

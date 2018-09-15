@@ -37,3 +37,7 @@ server-background: database
 test: server-background
 	@docker-compose run --rm --entrypoint="yarn test" server
 .PHONY: test
+
+down:
+	@docker-compose down
+.PHONY: down

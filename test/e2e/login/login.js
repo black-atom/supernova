@@ -14,9 +14,7 @@ const {
 const request = getRequest()
 
 test.beforeEach(async (t) => {
-  const {
-    body: temporaryCompany,
-  } = await getTemporaryCompany()
+  const temporaryCompany = await getTemporaryCompany()
 
   t.context.company = temporaryCompany
   t.context.user = temporaryCompany.primaryUser

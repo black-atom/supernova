@@ -9,17 +9,17 @@
   "scripts": {
     "start": "node src/bin/server.js",
     "start-live": "nodemon --inspect=0.0.0.0:9229 src/bin/server.js",
-    "test": "ava  --verbose 'test/**/*.js'",
+    "test": "ava --verbose 'test/**/*.js'",
     "e2e-test": "ava 'test/e2e/**/*.js'",
     "unit-test": "ava 'test/unit/**/*.js'",
     "test-nyc": "nyc ava 'test/**/*.js'",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
-    "lint": "eslint './{test,src}/**/*.js'"
+    "lint": "eslint './**/*.js'"
   },
   "dependencies": {
     "@fnando/cnpj": "^0.1.0",
     "@fnando/cpf": "^0.1.0",
-    "bcrypt-nodejs": "^0.0.3",
+    "bcrypt": "^3.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "1.18.3",
     "cors": "2.8.4",
@@ -28,6 +28,7 @@
     "express-validation": "^1.0.2",
     "joi": "^13.6.0",
     "log4js": "2.11.0",
+    "moment": "^2.22.2",
     "morgan": "^1.9.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
@@ -45,8 +46,10 @@
     "eslint-plugin-ava": "^5.1.0",
     "eslint-plugin-import": "2.12.0",
     "eslint-plugin-jest": "^21.18.0",
+    "node-mocks-http": "^1.7.0",
     "nodemon": "^1.18.2",
     "nyc": "^12.0.2",
+    "sinon": "^6.2.0",
     "supertest": "^3.1.0"
   }
 }
