@@ -14,7 +14,7 @@
     "unit-test": "ava 'test/unit/**/*.js'",
     "test-nyc": "nyc ava 'test/**/*.js'",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
-    "lint": "eslint './{test,src}/**/*.js'"
+    "lint": "eslint './**/*.js'"
   },
   "dependencies": {
     "@fnando/cnpj": "^0.1.0",
