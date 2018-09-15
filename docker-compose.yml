@@ -17,8 +17,8 @@ services:
       links:
           - database
       volumes:
-        - ./src:/server/src
-        - ./test:/server/test
+        - .:/server
+        - supernova-node_modules:/server/node_modules
   database:
     image: postgres:9.6.5-alpine
     ports:
@@ -27,3 +27,4 @@ services:
       - supernova-database:/var/lib/postgresql/data
 volumes:
   supernova-database:
+  supernova-node_modules:

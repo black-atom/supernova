@@ -6,7 +6,6 @@ const logger = require('morgan')
 const routes = require('./routes')
 const { formatError } = require('./utils')
 
-
 const app = Express()
 
 /** middlewares */
