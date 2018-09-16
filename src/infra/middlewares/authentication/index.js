@@ -8,6 +8,7 @@ const sessionExpirationTimeInMinutes = getSessionExpirationTime()
 const {
   session: Session,
   user: User,
+  role: Role,
   company: Company,
 } = database.models
 
@@ -22,7 +23,10 @@ const authentication = async (req, res, next) => {
 
     const session = await Session.findById(sessionId, {
       include: [
-        User,
+        {
+          model: User,
+          include: [Role],
+        },
         Company,
       ],
     })
