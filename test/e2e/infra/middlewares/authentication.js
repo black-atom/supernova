@@ -117,3 +117,13 @@ test('should not expire if session type is app', async (t) => {
 
   t.true(next.calledWithExactly())
 })
+
+test('should fail if session id is invalid', async (t) => {
+  const req = createExpressReq('50158fc0-b951-11e8-80c0-ad9e1caa5a90')
+  const res = {}
+  const next = sinon.spy()
+
+  await authentication(req, res, next)
+
+  t.true(next.calledWithMatch(sinon.match.instanceOf(UnauthorizedError)))
+})
