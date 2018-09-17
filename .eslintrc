@@ -35,6 +35,7 @@
         "ava/use-t": "error",
         "ava/use-test": "error",
         "ava/use-true-false": "error",
-        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["t"] }]
+        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["t"] }],
+        "radix": "off"
     }
 }
