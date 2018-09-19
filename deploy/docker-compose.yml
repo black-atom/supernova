@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+  base:
+    build:
+      context: ..
+      dockerfile: ./Dockerfile
+    environment:
+      - DOTENV_PATH=.env
+  server:
+      extends: base
+      command: yarn start
+      environment:
+        - NODE_ENV=production
+      ports:
+        - 4000:4000
+volumes:
+  supernova-database:
+  supernova-node_modules:

@@ -1,6 +1,21 @@
 version: 2
 jobs:
-  build:
+  deploy:
+    working_directory: ~/project
+    docker:
+     - image: circleci/node:10.9-stretch-browsers
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Docker client
+          command: |
+            sudo apt-get install python3-pip
+            sudo pip3 install --upgrade awscli
+      - run:
+          name: Deploy to aws
+          command: sh deploy/deploy.sh
+  test:
     working_directory: ~/project
     docker:
      - image: circleci/node:10.9-stretch-browsers
@@ -49,3 +64,12 @@ jobs:
       - run:
           name: Run Lint
           command: yarn lint
+ 
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+    #   - test
+      - deploy
+        #   requires:
+        #     - test

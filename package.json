@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node src/bin/server.js",
-    "start-live": "nodemon --inspect=0.0.0.0:9229 src/bin/server.js",
+    "start": "yarn run-migrations && node src/bin/server.js",
+    "start-live": "yarn run-migrations && nodemon --inspect=0.0.0.0:9229 src/bin/server.js",
+    "run-migrations": "node_modules/.bin/sequelize db:migrate --debug true --env $NODE_ENV",
     "test": "ava --verbose 'test/**/*.js'",
     "e2e-test": "ava 'test/e2e/**/*.js'",
     "unit-test": "ava 'test/unit/**/*.js'",
