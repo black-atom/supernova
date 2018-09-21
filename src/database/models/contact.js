@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(50),
       allowNull: true,
     },
+    type: {
+      type: Sequelize.ENUM('Email', 'WhatsApp', 'Skype'),
+      allowNull: true,
+    },
   })
   return Contact
 }

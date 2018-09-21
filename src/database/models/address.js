@@ -41,6 +41,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: 'Brasil',
     },
+    type: {
+      type: Sequelize.ENUM('Cobrança', 'Entrega'),
+      allowNull: true,
+    },
   })
   return Address
 }
