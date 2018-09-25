@@ -46,7 +46,7 @@ const registration = async (req, res, next) => {
     await transaction.commit()
     res.status(200).json(createdCompany)
   } catch (error) {
-    transaction.rollback()
+    await transaction.rollback()
     next(error)
   }
 }
