@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 // error handler
 app.use((err, req, res, next) => { //eslint-disable-line
 
+  /* eslint-disable no-console */
   console.error(err.stack || err)
   const formattedError = formatError(err)
 
