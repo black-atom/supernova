@@ -46,6 +46,9 @@ module.exports = (sequelize) => {
     models.company.belongsToMany(models.contact, {
       through: 'company_contact',
     })
+    models.company.belongsToMany(models.customer, {
+      through: 'customer',
+    })
   }
 
   return Company

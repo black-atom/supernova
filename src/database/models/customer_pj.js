@@ -2,10 +2,8 @@ const Sequelize = require('sequelize')
 
 module.exports = (sequelize) => {
   const CustomerPJ = sequelize.define('customer_pj', {
-    id: {
+    customerId: {
       type: Sequelize.UUID,
-      allowNull: false,
-      defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
     },
     socialName: {
@@ -22,6 +20,10 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
   })
+
+  CustomerPJ.associate = (models) => {
+    models.customer_pj.belongsTo(models.customer)
+  }
 
   return CustomerPJ
 }
