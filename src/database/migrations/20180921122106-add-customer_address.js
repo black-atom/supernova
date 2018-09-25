@@ -1,25 +1,27 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface
     .createTable('customer_address', {
-      customer_id: {
+      customerId: {
         type: Sequelize.UUID,
         references: {
           model: 'customer',
           key: 'id',
         },
         allowNull: false,
-        onUpdate: 'cascade',
-        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true,
       },
-      address_id: {
+      addressId: {
         type: Sequelize.UUID,
         references: {
           model: 'address',
           key: 'id',
         },
         allowNull: false,
-        onUpdate: 'cascade',
-        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true,
       },
       createdAt: {
         type: Sequelize.DATE,
