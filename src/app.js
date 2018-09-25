@@ -29,6 +29,7 @@ app.use((err, req, res, next) => { //eslint-disable-line
 
   /* eslint-disable no-console */
   console.error(err.stack || err)
+  console.error(JSON.stringify(err))
   const formattedError = formatError(err)
 
   res.status(formattedError.status || 500)
