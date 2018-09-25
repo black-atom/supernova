@@ -1,12 +1,16 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface
     .createTable('customer_pj', {
-      customer_id: {
+      customerId: {
         type: Sequelize.UUID,
         references: {
           model: 'customer',
           key: 'id',
         },
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true,
       },
       socialName: {
         type: Sequelize.STRING(200),
@@ -28,6 +32,10 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
     }),
   down: (queryInterface) => {

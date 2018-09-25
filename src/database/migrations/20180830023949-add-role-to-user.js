@@ -10,6 +10,7 @@ module.exports = {
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        primaryKey: true,
       },
       roleId: {
         type: Sequelize.INTEGER,
@@ -20,6 +21,7 @@ module.exports = {
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        primaryKey: true,
       },
       createdAt: {
         type: Sequelize.DATE,

@@ -8,8 +8,9 @@ module.exports = {
           key: 'id',
         },
         allowNull: false,
-        onUpdate: 'cascade',
-        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true,
       },
       contact_id: {
         type: Sequelize.UUID,

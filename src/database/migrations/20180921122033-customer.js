@@ -32,6 +32,20 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      companyId: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'company',
+          key: 'id',
+        },
+        allowNull: false,
+        onUpdate: 'cascade',
+        onDelete: 'NO ACTION',
+      },
     }),
   down: (queryInterface) => {
     queryInterface.dropTable('customer')
