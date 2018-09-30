@@ -38,9 +38,6 @@ jobs:
           name: Run Migrations
           command: node_modules/.bin/sequelize db:migrate --debug true --env test
       - run:
-          name: Run Seeds
-          command: node_modules/.bin/sequelize db:seed:all --debug true --env test
-      - run:
           name: Run Unit Tests
           command: yarn unit-test
       - run:
