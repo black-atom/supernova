@@ -26,6 +26,9 @@ server-background: database
 	@docker-compose up -d server
 .PHONY: server-background
 
+setup: run-test-migration
+.PHONY: setup
+
 test: server-background
 	@docker-compose run --rm --entrypoint="yarn test" server
 .PHONY: test

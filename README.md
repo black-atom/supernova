@@ -36,8 +36,7 @@ There are 3 default .env files. You can change them according to your needs..
 ## Setup
 To setup the environment you can change or create a .env file. Then run:
 ```
-make database
-make run-test-migration
+make setup
 ```
 
 ## Running Server
