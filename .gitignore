@@ -34,3 +34,6 @@ npm-debug.log
 
 #dot env
 .env.*
+
+# .DS_Store
+.DS_Store
