@@ -16,6 +16,14 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(255),
       allowNull: true,
     },
+    price: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+    },
+    sku: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+    },
   })
 
   Variant.associate = (models) => {
