@@ -51,8 +51,6 @@ test('POST /api/customer', async (t) => {
     }],
   }
 
-
-
   const response = await request.post('/api/customer', customerData, {
     headers: {
       Authorization: `bearer ${session.id}`,
