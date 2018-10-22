@@ -14,7 +14,9 @@
     "unit-test": "ava 'test/unit/**/*.js'",
     "test-nyc": "nyc ava 'test/**/*.js'",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
-    "lint": "eslint './**/*.js'"
+    "lint": "eslint './**/*.js'",
+    "migration:undo:dev": "node_modules/.bin/sequelize db:migrate:undo:all --debug true --env test",
+    "migration:run:dev": "node_modules/.bin/sequelize db:migrate --debug true --env test"
   },
   "dependencies": {
     "@fnando/cnpj": "^0.1.0",
