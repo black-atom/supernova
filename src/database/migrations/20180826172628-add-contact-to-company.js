@@ -21,6 +21,7 @@ module.exports = {
         allowNull: false,
         onUpdate: 'cascade',
         onDelete: 'NO ACTION',
+        primaryKey: true,
       },
       createdAt: {
         type: Sequelize.DATE,
