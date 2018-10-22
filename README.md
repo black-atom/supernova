@@ -45,13 +45,17 @@ make run-seeds
 To run locally, simply do the following command:
 ```sh
 make server
+or
+yarn start:dev
 ```
 This will start the development server listening on port 3000.
 
 ## Running Tests
 To run our tests, do:
 ```sh
-$ make test
+make test
+or
+yarn test
 ```
 This will run both e2e and unit tests
 
